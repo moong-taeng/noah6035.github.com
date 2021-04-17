@@ -1,6 +1,6 @@
-## 숙제
+## 숙제입니다
 
-{% highlight css %}
+{% highlight html %}
 import os
 import sys
 import urllib.request
@@ -14,7 +14,7 @@ request = urllib.request.Request(url)
 request.add_header("X-Naver-Client-Id", client_id)
 request.add_header("X-Naver-Client-Secret", client_secret)
 response = urllib.request.urlopen(request)
-# 위의 코드는 반복하지 말 것.
+
 rescode = response.getcode()
 if (rescode == 200):
     response_body = response.read()
