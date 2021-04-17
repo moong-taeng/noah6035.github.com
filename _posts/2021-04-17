@@ -1,6 +1,6 @@
 ## 숙제입니다
 
-{% highlight ruby linenos %}
+{% highlight css %}
 import os
 import sys
 import urllib.request
