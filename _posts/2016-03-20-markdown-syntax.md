@@ -1,112 +1,58 @@
----
-layout: post
-title:  "Markdown Syntax"
-date:   2016-03-15
-excerpt: "Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more."
-tag:
-- markdown 
-- syntax
-- sample
-- test
-- jekyll
-comments: true
----
-
-## HTML Elements
-
-Below is just about everything you'll need to style in the theme. Check the source code to see the many embedded elements within paragraphs.
-
-# Heading 1
-
-## Heading 2
-
-### Heading 3
-
-#### Heading 4
-
-##### Heading 5
-
-###### Heading 6
-
-### Body text
-
-Lorem ipsum dolor sit amet, test link adipiscing elit. **This is strong**. Nullam dignissim convallis est. Quisque aliquam.
-
-![Smithsonian Image](https://mmistakes.github.io/minimal-mistakes/images/3953273590_704e3899d5_m.jpg)
-{: .image-right}
-
-*This is emphasized*. Donec faucibus. Nunc iaculis suscipit dui. 53 = 125. Water is H2O. Nam sit amet sem. Aliquam libero nisi, imperdiet at, tincidunt nec, gravida vehicula, nisl. The New York Times (That’s a citation). Underline.Maecenas ornare tortor. Donec sed tellus eget sapien fringilla nonummy. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus.
-
-HTML and CSS are our tools. Mauris a ante. Suspendisse quam sem, consequat at, commodo vitae, feugiat in, nunc. Morbi imperdiet augue quis tellus. Praesent mattis, massa quis luctus fermentum, turpis mi volutpat justo, eu volutpat enim diam eget metus.
-
-### Blockquotes
-
-> Lorem ipsum dolor sit amet, test link adipiscing elit. Nullam dignissim convallis est. Quisque aliquam.
-
-## List Types
-
-### Ordered Lists
-
-1. Item one
-   1. sub item one
-   2. sub item two
-   3. sub item three
-2. Item two
-
-### Unordered Lists
-
-* Item one
-* Item two
-* Item three
-
-## Tables
-
-| Header1 | Header2 | Header3 |
-|:--------|:-------:|--------:|
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|----
-| cell1   | cell2   | cell3   |
-| cell4   | cell5   | cell6   |
-|=====
-| Foot1   | Foot2   | Foot3
-{: rules="groups"}
-
-## Code Snippets
+## 숙제
 
 {% highlight css %}
-#container {
-  float: left;
-  margin: 0 -240px 0 0;
-  width: 100%;
-}
+import os
+import sys
+import urllib.request
+a=0
+client_id = "OJgN42xxZiJXpnZtCH1j"
+client_secret = "crXggqJhhW"
+encText = urllib.parse.quote("이천코딩")
+url = "https://openapi.naver.com/v1/search/blog?query=" + encText  # json 결과
+# url = "https://openapi.naver.com/v1/search/blog.xml?query=" + encText # xml 결과
+request = urllib.request.Request(url)
+request.add_header("X-Naver-Client-Id", client_id)
+request.add_header("X-Naver-Client-Secret", client_secret)
+response = urllib.request.urlopen(request)
+# 위의 코드는 반복하지 말 것.
+rescode = response.getcode()
+if (rescode == 200):
+    response_body = response.read()
+    print(response_body.decode('utf-8'))
+
+else:
+    print("Error Code:" + rescode)
+
+from konlpy.tag import Kkma
+
+kkma = Kkma()
+sen = kkma.sentences(response_body.decode('utf-8'))
+
+noun = kkma.nouns(response_body.decode('utf-8'))
+
+pos = kkma.pos(response_body.decode('utf-8'))
+
+morph = kkma.morphs(response_body.decode('utf-8'))
+
+d=[]
+
+while a<len(pos):
+    if "NNG" in pos[a]:
+
+        d.append(pos[a])
+    a=a+1
+a=1
+x=[]
+da=list(morph)
+v=0
+o=dict()
+while a<len(morph):
+  if morph[a] in o:
+    o[morph[a]]=o[morph[a]]+1
+  else:
+    o[morph[a]]=1
+  a=a+1
+dad= sorted(o.items(),reverse=True,key=lambda item: item[1])
+for key, value in dad:
+  print(key, ":", value)
 {% endhighlight %}
-
-## Buttons
-
-Make any link standout more when applying the `.btn` class.
-
-{% highlight html %}
-<a href="#" class="btn btn-success">Success Button</a>
-{% endhighlight %}
-
-<div markdown="0"><a href="#" class="btn">Primary Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-success">Success Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-warning">Warning Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-danger">Danger Button</a></div>
-<div markdown="0"><a href="#" class="btn btn-info">Info Button</a></div>
-
-## KBD
-
-You can also use `<kbd>` tag for keyboard buttons.
-
-{% highlight html %}
-<kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>
-{% endhighlight %}
-
-Press <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move your car. **Midtown Maddness!!**
-
-## Notices
-
-**Watch out!** You can also add notices by appending `{: .notice}` to a paragraph.
-{: .notice}
