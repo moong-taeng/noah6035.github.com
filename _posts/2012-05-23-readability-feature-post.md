@@ -5,13 +5,11 @@ a=0
 client_id = "OJgN42xxZiJXpnZtCH1j"
 client_secret = "crXggqJhhW"
 encText = urllib.parse.quote("이천코딩")
-url = "https://openapi.naver.com/v1/search/blog?query=" + encText  # json 결과
-# url = "https://openapi.naver.com/v1/search/blog.xml?query=" + encText # xml 결과
+url = "https://openapi.naver.com/v1/search/blog?query=" + encText
 request = urllib.request.Request(url)
 request.add_header("X-Naver-Client-Id", client_id)
 request.add_header("X-Naver-Client-Secret", client_secret)
 response = urllib.request.urlopen(request)
-# 위의 코드는 반복하지 말 것.
 rescode = response.getcode()
 if (rescode == 200):
     response_body = response.read()
