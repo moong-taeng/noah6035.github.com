@@ -33,7 +33,6 @@ d=[]
 
 while a<len(pos):
     if "NNG" in pos[a]:
-
         d.append(pos[a])
     a=a+1
 a=1
