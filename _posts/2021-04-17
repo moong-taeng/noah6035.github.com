@@ -8,8 +8,8 @@ a=0
 client_id = "OJgN42xxZiJXpnZtCH1j"
 client_secret = "crXggqJhhW"
 encText = urllib.parse.quote("이천코딩")
-url = "https://openapi.naver.com/v1/search/blog?query=" + encText  # json 결과
-# url = "https://openapi.naver.com/v1/search/blog.xml?query=" + encText # xml 결과
+url = "https://openapi.naver.com/v1/search/blog?query=" + encText
+url = "https://openapi.naver.com/v1/search/blog.xml?query=" + encText
 request = urllib.request.Request(url)
 request.add_header("X-Naver-Client-Id", client_id)
 request.add_header("X-Naver-Client-Secret", client_secret)
